@@ -5,6 +5,30 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <h1 class="display-4">Login to Dreamland</h1>
+
+    <form id="LoginForm" class="needs-validation" novalidate method="post">
+
+        <div class="form-row mb-6">
+            <label for="UserEmail">Email:</label>
+            <input asp-for="Form.UserEmail" type="text" class="form-control" id="UserEmail" placeholder="" maxlength="255" required>
+        </div>
+
+        <div class="form-row mb-6">
+            <label for="UserPassword">Password:</label>
+            <input asp-for="Form.UserPassword" type="password" class="form-control" id="UserPassword" placeholder="" maxlength="255" required>
+        </div>
+
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary btn-lg" id="SubmitCredentials">Login</button>
+        </div>
+
+        <div>
+            @ViewData["Info"]
+        </div>
+
+    </form>
+
 </div>
+
