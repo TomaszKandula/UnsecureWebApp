@@ -4,7 +4,7 @@ This NET Core application (with Razor Pages and EF Core) that has been created f
 
 # Database connection
 
-In our example, instead of ADO.NET, we use EF Core ability to send raw SQL string for execution. Thus, in order to run this example:
+In our example, instead of ADO.NET, we use EF Core that have ability to send raw SQL string for execution. Thus, in order to run this example:
 
 I. Add connection string to your User Secrets:
 
