@@ -1,0 +1,33 @@
+﻿@page
+@model LaptopsModel
+@{
+    ViewData["Title"] = "Laptops";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+
+    <h1 class="display-4">Laptop list</h1>
+    <table>
+        <tr>
+            <th><b>Brand</b></th>
+            <th><b>Serial Number</b></th>
+            <th><b>User Id</b></th>
+        </tr>
+        <tbody class="" id="Table1">
+            @if (Model.Form.Any())
+            {
+                @foreach (var Item in Model.Form)
+                {
+                    <tr>
+                        <td class="Lp">@Item.Brand</td>
+                        <td class="Lp">@Item.SerialNo</td>
+                        <td class="Lp">@Item.Userid</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
