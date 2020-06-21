@@ -62,7 +62,7 @@ namespace UnsecureWebApp.Pages
         /// <returns></returns>
         private async Task<List<Laptops>> ReturnLaptopsAsync(string ABrand) 
         {
-            var Data = await FDataBase.Laptops.FromSqlRaw("SELECT * FROM Laptops WHERE Brand = '" + ABrand + "'").ToListAsync();
+            var Data = await FDataBase.Laptops.FromSqlRaw("SELECT Id, Brand, SerialNo, UserId FROM Laptops WHERE Brand = '" + ABrand + "'").ToListAsync();
             return Data;
         }
 
