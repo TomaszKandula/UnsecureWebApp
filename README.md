@@ -23,4 +23,4 @@ II. Run SQL script to add example tables with some data: SqlScripts/CreateTables
 
 # End note
 
-This is not by any means application to follow in terms of dealing with SQL and databases. More in related article. For clear picture, there is opposite application.
+This is not by any means application to follow in terms of dealing with SQL and databases. More in related article. For clearer picture, there will be opposite application available soon.
