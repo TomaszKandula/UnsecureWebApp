@@ -1,4 +1,4 @@
-﻿namespace UnsecureWebApp.Model.FormData
+﻿namespace UnsecureWebApp.Model
 {
     public class UserData
     {

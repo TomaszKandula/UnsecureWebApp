@@ -1,22 +1,22 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using UnsecureWebApp.Model.Database;
-using UnsecureWebApp.Model.FormData;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using UnsecureWebApp.Model;
+using UnsecureWebApp.Infrastructure.Database;
 
 namespace UnsecureWebApp.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> FLogger;
-        private readonly DbModel FDataBase;
+        private readonly DatabaseContext FDataBase;
 
         [BindProperty]
         public UserData Form { get; set; }
 
-        public IndexModel(ILogger<IndexModel> ALogger, DbModel ADataBase)
+        public IndexModel(ILogger<IndexModel> ALogger, DatabaseContext ADataBase)
         {
             FLogger   = ALogger;
             FDataBase = ADataBase;
@@ -36,16 +36,11 @@ namespace UnsecureWebApp.Pages
                 {
                     ViewData["Info"] = "Validated.";
                 }
-                else 
-                {
-                    ViewData["Info"] = "Incorrect login/password.";
-                }
-            }
-            else
-            {
-                ViewData["Info"] = "Model is invalid.";
+
+                ViewData["Info"] = "Incorrect login/password.";
             }
 
+            ViewData["Info"] = "Model is invalid.";
             return Page();
         }
 
@@ -57,16 +52,10 @@ namespace UnsecureWebApp.Pages
         /// <returns></returns>
         private bool IsUserAuthenticated(string AEmail, string APassword) 
         {
-            var Result = FDataBase.Users.FromSqlRaw("SELECT Id FROM dbo.Users WHERE EmailAddress = '" + AEmail + "' AND HashedPassword = '" + APassword + "'");
+            var Result = FDataBase.Users
+                .FromSqlRaw("SELECT Id FROM dbo.Users WHERE EmailAddress = '" + AEmail + "' AND HashedPassword = '" + APassword + "'");
 
-            if (Result.Any())
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Result.Any();
         }
     }
 }

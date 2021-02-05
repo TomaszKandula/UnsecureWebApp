@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using UnityApi.Extensions.ConnectionService;
-using UnsecureWebApp.Model.Database;
+using UnsecureWebApp.Infrastructure.Database;
+using UnsecureWebApp.Services.ConnectionService;
 
 namespace UnsecureWebApp
 {
@@ -24,7 +24,7 @@ namespace UnsecureWebApp
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             AServices.AddRazorPages();
             AServices.AddScoped<IConnectionService, ConnectionService>();
-            AServices.AddDbContext<DbModel>();
+            AServices.AddDbContext<DatabaseContext>();
         }
 
         public void Configure(IApplicationBuilder AApp, IWebHostEnvironment AEnv)
