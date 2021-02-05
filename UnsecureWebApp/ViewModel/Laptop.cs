@@ -1,6 +1,6 @@
-﻿namespace UnsecureWebApp.Model
+﻿namespace UnsecureWebApp.ViewModel
 {   
-    public class LaptopData
+    public class Laptop
     {
         public string Brand { get; set; }
 

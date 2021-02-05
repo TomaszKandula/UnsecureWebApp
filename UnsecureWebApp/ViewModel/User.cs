@@ -1,6 +1,6 @@
-﻿namespace UnsecureWebApp.Model
+﻿namespace UnsecureWebApp.ViewModel
 {
-    public class UserData
+    public class User
     {
         public string UserEmail { get; set; }
 
