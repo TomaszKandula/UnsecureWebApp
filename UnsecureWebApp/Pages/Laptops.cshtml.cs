@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using UnsecureWebApp.Model;
+using UnsecureWebApp.ViewModel;
 using UnsecureWebApp.Infrastructure.Database;
 using UnsecureWebApp.Infrastructure.Domain.Entities;
 
@@ -16,7 +16,7 @@ namespace UnsecureWebApp.Pages
         private readonly DatabaseContext FDataBase;
 
         [BindProperty]
-        public List<LaptopData> Form { get; set; }
+        public List<Laptop> Form { get; set; }
 
         public LaptopsModel(ILogger<LaptopsModel> ALogger, DatabaseContext ADataBase)
         {
@@ -26,7 +26,7 @@ namespace UnsecureWebApp.Pages
 
         public async Task<IActionResult> OnGetAsync(string Brand)
         {
-            Form = new List<LaptopData>();
+            Form = new List<Laptop>();
 
             if (!string.IsNullOrEmpty(Brand))
             {
@@ -34,7 +34,7 @@ namespace UnsecureWebApp.Pages
                 
                 foreach (var Laptop in Laptops) 
                 {
-                    var LaptopData = new LaptopData()
+                    var LaptopData = new Laptop()
                     {
                         Brand    = Laptop.Brand,
                         SerialNo = Laptop.SerialNo,

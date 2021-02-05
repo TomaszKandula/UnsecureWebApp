@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using UnsecureWebApp.Model;
+using UnsecureWebApp.ViewModel;
 using UnsecureWebApp.Infrastructure.Database;
 
 namespace UnsecureWebApp.Pages
@@ -14,7 +14,7 @@ namespace UnsecureWebApp.Pages
         private readonly DatabaseContext FDataBase;
 
         [BindProperty]
-        public UserData Form { get; set; }
+        public User Form { get; set; }
 
         public IndexModel(ILogger<IndexModel> ALogger, DatabaseContext ADataBase)
         {
@@ -28,7 +28,7 @@ namespace UnsecureWebApp.Pages
             return Page();
         }
 
-        public IActionResult OnPost(UserData Form) 
+        public IActionResult OnPost(User Form) 
         {
             if (ModelState.IsValid)
             {
