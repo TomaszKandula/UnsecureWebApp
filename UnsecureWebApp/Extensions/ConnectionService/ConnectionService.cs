@@ -2,10 +2,8 @@ using Microsoft.Extensions.Configuration;
 
 namespace UnityApi.Extensions.ConnectionService
 {
-
     public sealed class ConnectionService : IConnectionService
     {
-
         private IConfiguration FConfiguration { get; }
 
         public ConnectionService(IConfiguration AConfiguration)
@@ -23,7 +21,5 @@ namespace UnityApi.Extensions.ConnectionService
         }
 
         // Add more databases as required here...
-
     }
-
 }

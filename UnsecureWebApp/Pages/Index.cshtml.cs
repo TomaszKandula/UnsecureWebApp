@@ -8,10 +8,8 @@ using UnsecureWebApp.Model.FormData;
 
 namespace UnsecureWebApp.Pages
 {
-
     public class IndexModel : PageModel
     {
-
         private readonly ILogger<IndexModel> FLogger;
         private readonly DbModel FDataBase;
 
@@ -26,19 +24,14 @@ namespace UnsecureWebApp.Pages
 
         public IActionResult OnGet()
         {
-
             ViewData["Info"] = "Please provide credentials.";
-
             return Page();
-
         }
 
         public IActionResult OnPost(UserData Form) 
         {
-
             if (ModelState.IsValid)
             {
-
                 if (IsUserAuthenticated(Form.UserEmail, Form.UserPassword))
                 {
                     ViewData["Info"] = "Validated.";
@@ -47,7 +40,6 @@ namespace UnsecureWebApp.Pages
                 {
                     ViewData["Info"] = "Incorrect login/password.";
                 }
-
             }
             else
             {
@@ -55,7 +47,6 @@ namespace UnsecureWebApp.Pages
             }
 
             return Page();
-
         }
 
         /// <summary>
@@ -66,7 +57,6 @@ namespace UnsecureWebApp.Pages
         /// <returns></returns>
         private bool IsUserAuthenticated(string AEmail, string APassword) 
         {
-
             var Result = FDataBase.Users.FromSqlRaw("SELECT Id FROM dbo.Users WHERE EmailAddress = '" + AEmail + "' AND HashedPassword = '" + APassword + "'");
 
             if (Result.Any())
@@ -77,9 +67,6 @@ namespace UnsecureWebApp.Pages
             {
                 return false;
             }
-
         }
-
     }
-
 }
