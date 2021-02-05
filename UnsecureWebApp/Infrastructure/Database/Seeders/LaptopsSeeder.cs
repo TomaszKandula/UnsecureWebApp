@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using UnsecureWebApp.Infrastructure.Domain.Entities;
 
 namespace UnsecureWebApp.Infrastructure.Database.Seeders
@@ -11,22 +11,22 @@ namespace UnsecureWebApp.Infrastructure.Database.Seeders
                 new Laptops 
                 { 
                     Id = 1,
-                    Brand = "Dell",
-                    SerialNo = "ABCDE",
+                    Brand = "Lenovo",
+                    SerialNo = "C02L456987",
                     UserId = 1
                 },
                 new Laptops
                 {
                     Id = 2,
-                    Brand = "HP",
-                    SerialNo = "ECDBA",
-                    UserId = 1
+                    Brand = "Dell",
+                    SerialNo = "123AB458GH",
+                    UserId = 2
                 },
                 new Laptops
                 {
                     Id = 3,
-                    Brand = "Lenovo",
-                    SerialNo = "987456AE",
+                    Brand = "HP",
+                    SerialNo = "PO54654PUXR",
                     UserId = 2
                 }
             );
