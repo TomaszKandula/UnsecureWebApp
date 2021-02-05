@@ -9,13 +9,11 @@ In our example, instead of ADO.NET, we use EF Core that have ability to send raw
 I. Add connection string to your User Secrets:
 
 ```
-{
-  
+{  
   "ConnectionStrings": 
   {
     "DbConnect": "<your_connection_string_goes_here>"
   }
-
 }
 ```
 
