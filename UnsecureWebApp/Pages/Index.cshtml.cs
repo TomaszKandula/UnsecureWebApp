@@ -36,11 +36,16 @@ namespace UnsecureWebApp.Pages
                 {
                     ViewData["Info"] = "Validated.";
                 }
-
-                ViewData["Info"] = "Incorrect login/password.";
+                else
+                {
+                    ViewData["Info"] = "Incorrect login/password.";
+                }
+            }
+            else
+            {
+                ViewData["Info"] = "Model is invalid.";
             }
 
-            ViewData["Info"] = "Model is invalid.";
             return Page();
         }
 
