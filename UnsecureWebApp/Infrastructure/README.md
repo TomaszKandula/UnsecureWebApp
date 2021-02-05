@@ -1,4 +1,4 @@
-﻿﻿### Migration Manual
+### Migration Manual
 ---
 
 Ensure you have local database running and all the connection string is in place. 
