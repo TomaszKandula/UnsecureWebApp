@@ -3,10 +3,8 @@ using Microsoft.Extensions.Hosting;
 
 namespace UnsecureWebApp
 {
-
     public class Program
     {
-
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
@@ -18,7 +16,5 @@ namespace UnsecureWebApp
         {
             CreateHostBuilder(args).Build().Run();
         }
-
     }
-
 }

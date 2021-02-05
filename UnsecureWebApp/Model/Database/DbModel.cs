@@ -3,10 +3,8 @@ using UnityApi.Extensions.ConnectionService;
 
 namespace UnsecureWebApp.Model.Database
 {
-
     public partial class DbModel : DbContext
     {
-
         private readonly IConnectionService FConnectionService;
 
         public DbModel(DbContextOptions<DbModel> options, IConnectionService AConnectionService) : base(options)
@@ -16,13 +14,11 @@ namespace UnsecureWebApp.Model.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
             var ConnectionString = FConnectionService.GetExampleDatabase();
 
             /// <seealso cref="https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency"/>
             optionsBuilder.UseSqlServer(ConnectionString, AddOptions =>
                     AddOptions.EnableRetryOnFailure());
-
         }
 
         public virtual DbSet<Laptops> Laptops { get; set; }
@@ -30,7 +26,6 @@ namespace UnsecureWebApp.Model.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<Laptops>(entity =>
             {
                 entity.Property(e => e.Brand)
@@ -65,8 +60,6 @@ namespace UnsecureWebApp.Model.Database
             OnModelCreatingPartial(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-    
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);   
     }
-
 }

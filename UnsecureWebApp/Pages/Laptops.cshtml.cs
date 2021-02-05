@@ -1,18 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using UnsecureWebApp.Model.Database;
 using UnsecureWebApp.Model.FormData;
 
 namespace UnsecureWebApp.Pages
 {
-
     public class LaptopsModel : PageModel
     {
-
         private readonly ILogger<LaptopsModel> FLogger;
         private readonly DbModel FDataBase;
 
@@ -27,17 +25,14 @@ namespace UnsecureWebApp.Pages
 
         public async Task<IActionResult> OnGetAsync(string Brand)
         {
-
             Form = new List<LaptopData>();
 
             if (!string.IsNullOrEmpty(Brand))
             {
-
                 var Laptops = await ReturnLaptopsAsync(Brand);                              
                 
                 foreach (var Laptop in Laptops) 
                 {
-
                     var LaptopData = new LaptopData()
                     {
                         Brand    = Laptop.Brand,
@@ -45,14 +40,11 @@ namespace UnsecureWebApp.Pages
                         Userid   = Laptop.UserId
                     };
 
-                    Form.Add(LaptopData);
-                
-                }
-            
+                    Form.Add(LaptopData);              
+                }           
             }
 
             return Page();
-
         }
 
         /// <summary>
@@ -65,7 +57,5 @@ namespace UnsecureWebApp.Pages
             var Data = await FDataBase.Laptops.FromSqlRaw("SELECT Id, Brand, SerialNo, UserId FROM Laptops WHERE Brand = '" + ABrand + "'").ToListAsync();
             return Data;
         }
-
     }
-
 }
