@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace UnsecureWebApp.Model.Database
+namespace UnsecureWebApp.Infrastructure.Domain.Entities
 {
-    public partial class Users
+    public class Users : Entity<int>
     {
         public Users()
         {
             Laptops = new HashSet<Laptops>();
         }
-
-        public int Id { get; set; }
 
         public string EmailAddress { get; set; }
 

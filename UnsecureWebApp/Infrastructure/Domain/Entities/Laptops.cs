@@ -1,9 +1,7 @@
-﻿namespace UnsecureWebApp.Model.Database
+﻿namespace UnsecureWebApp.Infrastructure.Domain.Entities
 {
-    public partial class Laptops
+    public class Laptops : Entity<int>
     {
-        public int Id { get; set; }
-
         public string Brand { get; set; }
 
         public string SerialNo { get; set; }

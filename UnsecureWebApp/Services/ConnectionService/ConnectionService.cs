@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-namespace UnityApi.Extensions.ConnectionService
+namespace UnsecureWebApp.Services.ConnectionService
 {
     public sealed class ConnectionService : IConnectionService
     {

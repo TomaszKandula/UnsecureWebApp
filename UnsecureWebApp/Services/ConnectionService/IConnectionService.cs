@@ -1,4 +1,4 @@
-namespace UnityApi.Extensions.ConnectionService
+namespace UnsecureWebApp.Services.ConnectionService
 {
     public interface IConnectionService
     {
