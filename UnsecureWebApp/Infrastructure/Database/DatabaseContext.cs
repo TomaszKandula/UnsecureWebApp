@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using UnsecureWebApp.Services.ConnectionService;
 using UnsecureWebApp.Infrastructure.Domain.Entities;
+using UnsecureWebApp.Infrastructure.Database.Seeders;
 
 namespace UnsecureWebApp.Infrastructure.Database
 {
@@ -32,6 +33,9 @@ namespace UnsecureWebApp.Infrastructure.Database
         {
             base.OnModelCreating(AModelBuilder);
             ApplyConfiguration(AModelBuilder);
+
+            new UsersSeeder().Seed(AModelBuilder);
+            new LaptopsSeeder().Seed(AModelBuilder);
         }
 
         protected void ApplyConfiguration(ModelBuilder AModelBuilder)
