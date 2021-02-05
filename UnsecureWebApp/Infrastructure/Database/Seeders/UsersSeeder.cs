@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using UnsecureWebApp.Infrastructure.Domain.Entities;
 
 namespace UnsecureWebApp.Infrastructure.Database.Seeders
@@ -11,14 +11,14 @@ namespace UnsecureWebApp.Infrastructure.Database.Seeders
                 new Users 
                 { 
                     Id = 1,
-                    EmailAddress = "tokan@dfds.com",
-                    HashedPassword = "123456"
+                    EmailAddress = "jonny@example.com",
+                    HashedPassword = "password1234"
                 },
                 new Users 
                 {
                     Id = 2,
-                    EmailAddress = "tokan@gmail.com",
-                    HashedPassword = "654321"
+                    EmailAddress = "bravo@example.com",
+                    HashedPassword = "admin2020"
                 }
             );
         }
