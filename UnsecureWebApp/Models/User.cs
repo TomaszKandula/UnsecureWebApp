@@ -1,4 +1,4 @@
-﻿namespace UnsecureWebApp.ViewModel
+﻿namespace UnsecureWebApp.Models
 {
     public class User
     {

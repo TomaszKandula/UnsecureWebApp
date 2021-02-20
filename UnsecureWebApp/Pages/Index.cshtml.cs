@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using UnsecureWebApp.ViewModel;
+using UnsecureWebApp.Models;
 using UnsecureWebApp.Infrastructure.Database;
 
 namespace UnsecureWebApp.Pages
