@@ -11,40 +11,31 @@ namespace UnsecureWebApp
 {
     public class Startup
     {
-        public IConfiguration FConfiguration { get; }
+        private IConfiguration Configuration { get; }
 
         public Startup(IConfiguration AConfiguration)
-        {
-            FConfiguration = AConfiguration;
-        }
-
+            => Configuration = AConfiguration;
+ 
         public void ConfigureServices(IServiceCollection AServices)
         {
-            AServices.AddMvc(Option => Option.EnableEndpointRouting = false)
+            AServices.AddMvc(AOption => AOption.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             AServices.AddRazorPages();
             AServices.AddScoped<IConnectionService, ConnectionService>();
             AServices.AddDbContext<DatabaseContext>();
         }
 
-        public void Configure(IApplicationBuilder AApp, IWebHostEnvironment AEnv)
+        public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment)
         {
-            if (AEnv.IsDevelopment())
-            {
-                AApp.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                AApp.UseExceptionHandler("/Error");
-            }
+            if (AEnvironment.IsDevelopment())
+                AApplication.UseDeveloperExceptionPage();
 
-            AApp.UseStaticFiles();
-            AApp.UseRouting();
-            AApp.UseAuthorization();
-            AApp.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
+            AApplication.UseExceptionHandler("/Error");
+            AApplication.UseStaticFiles();
+            AApplication.UseRouting();
+            AApplication.UseAuthorization();
+            AApplication.UseEndpoints(AEndpoints 
+                => AEndpoints.MapRazorPages());
         }
     }
 }

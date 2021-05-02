@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ namespace UnsecureWebApp.Pages
     public class LaptopsModel : PageModel
     {
         private readonly ILogger<LaptopsModel> FLogger;
+        
         private readonly DatabaseContext FDataBase;
 
         [BindProperty]
@@ -28,21 +30,19 @@ namespace UnsecureWebApp.Pages
         {
             Form = new List<Laptop>();
 
-            if (!string.IsNullOrEmpty(Brand))
-            {
-                var Laptops = await ReturnLaptopsAsync(Brand);                              
+            if (string.IsNullOrEmpty(Brand)) 
+                return Page();
+            
+            var LLaptops = await ReturnLaptopsAsync(Brand);                              
                 
-                foreach (var Laptop in Laptops) 
-                {
-                    var LaptopData = new Laptop()
-                    {
-                        Brand    = Laptop.Brand,
-                        SerialNo = Laptop.SerialNo,
-                        Userid   = Laptop.UserId
-                    };
-
-                    Form.Add(LaptopData);              
-                }           
+            foreach (var LLaptopData in LLaptops.Select(ALaptop => new Laptop
+            {
+                Brand    = ALaptop.Brand,
+                SerialNo = ALaptop.SerialNo,
+                Userid   = ALaptop.UserId
+            }))
+            {
+                Form.Add(LLaptopData);
             }
 
             return Page();
@@ -55,10 +55,10 @@ namespace UnsecureWebApp.Pages
         /// <returns></returns>
         private async Task<List<Laptops>> ReturnLaptopsAsync(string ABrand) 
         {
-            var Data = await FDataBase.Laptops
-                .FromSqlRaw("SELECT Id, Brand, SerialNo, UserId FROM Laptops WHERE Brand = '" + ABrand + "'")
+            var LData = await FDataBase.Laptops
+                .FromSqlRaw($"SELECT Id, Brand, SerialNo, UserId FROM Laptops WHERE Brand = '{ABrand}'")
                 .ToListAsync();
-            return Data;
+            return LData;
         }
     }
 }

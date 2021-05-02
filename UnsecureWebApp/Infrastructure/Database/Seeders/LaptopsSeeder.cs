@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using UnsecureWebApp.Infrastructure.Domain.Entities;
 
@@ -6,8 +7,12 @@ namespace UnsecureWebApp.Infrastructure.Database.Seeders
     public class LaptopsSeeder : IDatabaseContextSeeder
     {
         public void Seed(ModelBuilder AModelBuilder)
+            => AModelBuilder.Entity<Laptops>().HasData(CreateLaptopList());
+
+        private static IEnumerable<Laptops> CreateLaptopList()
         {
-            AModelBuilder.Entity<Laptops>().HasData(
+            return new List<Laptops>
+            {
                 new Laptops 
                 { 
                     Id = 1,
@@ -29,7 +34,7 @@ namespace UnsecureWebApp.Infrastructure.Database.Seeders
                     SerialNo = "PO54654PUXR",
                     UserId = 2
                 }
-            );
+            };
         }
     }
 }

@@ -10,23 +10,21 @@ namespace UnsecureWebApp.Infrastructure.Database
     {
         private readonly IConnectionService FConnectionService;
 
-        public DatabaseContext(
-            DbContextOptions<DatabaseContext> AOptions, 
-            IConnectionService AConnectionService) : base(AOptions)
-        {
-            FConnectionService = AConnectionService;
-        }
+        public DatabaseContext(DbContextOptions<DatabaseContext> AOptions, IConnectionService AConnectionService) : base(AOptions)
+            => FConnectionService = AConnectionService;
 
+        /// <seealso href="https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency"/>
+        /// <param name="AOptionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder AOptionsBuilder)
         {
-            var ConnectionString = FConnectionService.GetExampleDatabase();
+            var LConnectionString = FConnectionService.GetExampleDatabase();
 
-            /// <seealso cref="https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency"/>
-            AOptionsBuilder.UseSqlServer(ConnectionString, AddOptions =>
-                    AddOptions.EnableRetryOnFailure());
+            AOptionsBuilder.UseSqlServer(LConnectionString, ADdOptions 
+                => ADdOptions.EnableRetryOnFailure());
         }
 
         public virtual DbSet<Laptops> Laptops { get; set; }
+        
         public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder AModelBuilder)
@@ -38,9 +36,7 @@ namespace UnsecureWebApp.Infrastructure.Database
             new LaptopsSeeder().Seed(AModelBuilder);
         }
 
-        protected void ApplyConfiguration(ModelBuilder AModelBuilder)
-        {
-            AModelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        }
+        private static void ApplyConfiguration(ModelBuilder AModelBuilder)
+            => AModelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }

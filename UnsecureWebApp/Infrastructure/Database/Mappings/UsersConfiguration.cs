@@ -8,11 +8,11 @@ namespace UnsecureWebApp.Infrastructure.Database.Mappings
     {
         public void Configure(EntityTypeBuilder<Users> AEntityBuilder)
         {
-            AEntityBuilder.Property(e => e.EmailAddress)
+            AEntityBuilder.Property(AUsers => AUsers.EmailAddress)
                 .IsRequired()
                 .HasMaxLength(255);
 
-            AEntityBuilder.Property(e => e.HashedPassword)
+            AEntityBuilder.Property(AUsers => AUsers.HashedPassword)
                 .IsRequired()
                 .HasMaxLength(255)
                 .IsUnicode(false);

@@ -8,19 +8,19 @@ namespace UnsecureWebApp.Infrastructure.Database.Mappings
     {
         public void Configure(EntityTypeBuilder<Laptops> AEntityBuilder)
         {
-            AEntityBuilder.Property(e => e.Brand)
+            AEntityBuilder.Property(ALaptops => ALaptops.Brand)
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            AEntityBuilder.Property(e => e.SerialNo)
+            AEntityBuilder.Property(ALaptops => ALaptops.SerialNo)
                 .IsRequired()
                 .HasMaxLength(255)
                 .IsUnicode(false);
 
-            AEntityBuilder.HasOne(d => d.User)
-                .WithMany(p => p.Laptops)
-                .HasForeignKey(d => d.UserId)
+            AEntityBuilder.HasOne(ALaptops => ALaptops.User)
+                .WithMany(ALaptops => ALaptops.Laptops)
+                .HasForeignKey(ALaptops => ALaptops.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Laptops__UserId");
         }

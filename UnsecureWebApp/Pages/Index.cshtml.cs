@@ -11,6 +11,7 @@ namespace UnsecureWebApp.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> FLogger;
+        
         private readonly DatabaseContext FDataBase;
 
         [BindProperty]
@@ -57,10 +58,10 @@ namespace UnsecureWebApp.Pages
         /// <returns></returns>
         private bool IsUserAuthenticated(string AEmail, string APassword) 
         {
-            var Result = FDataBase.Users
-                .FromSqlRaw("SELECT Id FROM dbo.Users WHERE EmailAddress = '" + AEmail + "' AND HashedPassword = '" + APassword + "'");
+            var LResult = FDataBase.Users
+                .FromSqlRaw($"SELECT Id FROM dbo.Users WHERE EmailAddress = '{AEmail}' AND HashedPassword = '{APassword}'");
 
-            return Result.Any();
+            return LResult.Any();
         }
     }
 }

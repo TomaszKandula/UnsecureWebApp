@@ -12,16 +12,12 @@ namespace UnsecureWebApp.Pages
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
-        private readonly ILogger<ErrorModel> _logger;
+        private readonly ILogger<ErrorModel> FLogger;
 
-        public ErrorModel(ILogger<ErrorModel> logger)
-        {
-            _logger = logger;
-        }
+        public ErrorModel(ILogger<ErrorModel> ALogger)
+            => FLogger = ALogger;
 
         public void OnGet()
-        {
-            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
-        }
+            => RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
     }
 }

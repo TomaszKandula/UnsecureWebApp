@@ -3,18 +3,16 @@ using Microsoft.Extensions.Hosting;
 
 namespace UnsecureWebApp
 {
-    public class Program
+    public static class Program
     {
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        private static IHostBuilder CreateHostBuilder(string[] AArgs) =>
+            Host.CreateDefaultBuilder(AArgs)
+                .ConfigureWebHostDefaults(AWebBuilder =>
+                    AWebBuilder.UseStartup<Startup>());
 
-        public static void Main(string[] args)
+        public static void Main(string[] AArgs)
         {
-            CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(AArgs).Build().Run();
         }
     }
 }

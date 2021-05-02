@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using UnsecureWebApp.Infrastructure.Domain.Entities;
 
@@ -6,8 +7,12 @@ namespace UnsecureWebApp.Infrastructure.Database.Seeders
     public class UsersSeeder : IDatabaseContextSeeder
     {
         public void Seed(ModelBuilder AModelBuilder)
+            => AModelBuilder.Entity<Users>().HasData(CreateUserList());
+
+        private static IEnumerable<Users> CreateUserList()
         {
-            AModelBuilder.Entity<Users>().HasData(           
+            return new List<Users>
+            {
                 new Users 
                 { 
                     Id = 1,
@@ -20,7 +25,7 @@ namespace UnsecureWebApp.Infrastructure.Database.Seeders
                     EmailAddress = "bravo@example.com",
                     HashedPassword = "admin2020"
                 }
-            );
+            };
         }
     }
 }
